@@ -1,0 +1,215 @@
+ * {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+
+ }
+
+ html {
+   scroll-behavior: smooth;
+ }
+
+ body {
+   margin: 0;
+   font-family: 'Georgia', serif;
+   background-color: #000;
+   color: #d4af37;
+   /* dourado */
+   scroll-behavior: smooth;
+ }
+
+ header {
+   background-color: #8b0000;
+   /* vermelho escuro */
+   padding: 20px;
+   text-align: center;
+   color: #d4af37;
+   font-size: 2em;
+   font-weight: bold;
+ }
+
+ nav {
+   background-color: #111;
+   display: flex;
+   justify-content: center;
+   padding: 10px;
+   position: relative;
+ }
+
+ nav a {
+   color: #d4af37;
+   text-decoration: none;
+   margin: 0 15px;
+   font-weight: bold;
+
+ }
+
+ nav a:hover {
+   color: #fff;
+ }
+
+ #login {
+   position: absolute;
+   right: 0px;
+ }
+
+ .container {
+   padding: 20px;
+ }
+
+ .whisky-card {
+   background-color: #1a1a1a;
+   border: 2px solid #8b0000;
+   border-radius: 15px;
+   padding: 15px;
+   margin-bottom: 15px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 80%;
+ }
+
+ .whisky-card h2 {
+   color: #d4af37;
+ }
+
+ .whisky-card img {
+   width: 120px;
+   height: 180px;
+ }
+
+ .promo {
+   background-color: #8b0000;
+   color: #fff;
+   padding: 10px;
+   border-radius: 5px;
+   margin-top: 10px;
+ }
+
+ footer {
+   background-color: #111;
+   text-align: center;
+   padding: 15px;
+   color: #d4af37;
+   margin-top: 20px;
+ }
+
+ button {
+   background-color: #d4af37;
+   color: #000;
+   border: none;
+   padding: 10px 15px;
+   border-radius: 5px;
+   cursor: pointer;
+   font-weight: bold;
+ }
+
+ button:hover {
+   background-color: #fff;
+   color: #8b0000;
+ }
+
+ form {
+   background-color: #1a1a1a;
+   padding: 20px;
+   border-radius: 8px;
+   border: 2px solid #8b0000;
+   margin-bottom: 20px;
+ }
+
+ form input,
+ form textarea {
+   width: 100%;
+   padding: 10px;
+   margin: 10px 0;
+   border-radius: 5px;
+   border: none;
+ }
+
+ form label {
+   font-weight: bold;
+   color: #d4af37;
+ }
+
+ #favoritos {
+   background-color: #111;
+   padding: 15px;
+   border-radius: 8px;
+   margin-top: 20px;
+ }
+
+ #favoritos h2 {
+   color: #d4af37;
+ }
+
+ #listaWhiskys {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+
+   justify-items: center;
+ }
+
+ .favorito-item {
+   margin: 5px 0;
+   padding: 8px;
+   background-color: #1a1a1a;
+   border-left: 4px solid #d4af37;
+ }
+
+ .carousel {
+   position: relative;
+   width: 100%;
+
+   margin: auto;
+   overflow: hidden;
+   border-radius: 10px;
+ }
+
+ .slides {
+   display: flex;
+   width: 100%;
+   animation: slide 12s infinite;
+ }
+
+ .slides img {
+   max-width: 100%;
+   height: auto;
+ }
+
+ #propaganda {
+   height: auto;
+   
+   margin: 10px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+#propaganda img {
+  max-width: 100%;
+}
+ @keyframes slide {
+   0% {
+     margin-left: 0;
+   }
+
+   30% {
+     margin-left: 0;
+   }
+
+   35% {
+     margin-left: -100%;
+   }
+
+   65% {
+     margin-left: -100%;
+   }
+
+   70% {
+     margin-left: -200%;
+   }
+
+   100% {
+     margin-left: -200%;
+   }
+ }
