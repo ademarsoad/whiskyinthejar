@@ -9,11 +9,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = $_POST['senha'];
 
     $stmt = $conn->prepare("SELECT id, nome, senha FROM usuarios WHERE email=?");
-    $stmt->bind_param("s", $email);
+    $stmt->bindValue("s", $email);
     $stmt->execute();
-    $result = $stmt->get_result();
+    
 
-    if ($row = $result->fetch_assoc()) {
+    if ($row = $stmt->fetchAll(pdo::FETCH_ASSOC)) {
         if (password_verify($senha, $row['senha'])) {
             $_SESSION['usuario_id'] = $row['id'];
             $_SESSION['usuario_nome'] = $row['nome'];
@@ -27,10 +27,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="ptbr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/css/style.css">
+    <title>Login Cliente</title>
+</head>
+<body>
+    <?php include_once('../view/header.php'); ?>
 <form method="POST">
   <h2>Login</h2>
   <label>Email:</label><input type="email" name="email" required><br>
   <label>Senha:</label><input type="password" name="senha" required><br>
   <button type="submit">Entrar</button>
+  <div>
+      <a href="../cadastro.php">Cadastrar-se</a>
+  </div>
 </form>
-<a href="register.php">Cadastrar-se</a>
+    
+</body>
+</html>
