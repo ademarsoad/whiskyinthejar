@@ -3,7 +3,7 @@
   <nav>
     <div>
         <a href="index.php">Meus Whiskys</a>
-        <a href="adega-whisky.html">Dicas</a>
+        <a href="explorarwhiskys.php">Dicas</a>
         <a href="#favoritos">Meus Favoritos</a>
         <a href="#">Promoções</a>
         <a href="cadastro.php">Cadastro Usuario</a>    

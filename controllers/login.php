@@ -8,12 +8,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $stmt = $conn->prepare("SELECT id, nome, senha FROM usuarios WHERE email=?");
-    $stmt->bindValue("s", $email);
+    $stmt = $conn->prepare("SELECT id, nome, senha FROM usuarios WHERE email=:s");
+    $stmt->bindValue(":s", $email);
     $stmt->execute();
     
 
-    if ($row = $stmt->fetchAll(pdo::FETCH_ASSOC)) {
+    if ($row = $stmt->fetch(pdo::FETCH_ASSOC)) {
         if (password_verify($senha, $row['senha'])) {
             $_SESSION['usuario_id'] = $row['id'];
             $_SESSION['usuario_nome'] = $row['nome'];
@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <a href="../cadastro.php">Cadastrar-se</a>
   </div>
 </form>
+<a href="logout.php">Logout</a>
     
 </body>
 </html>
