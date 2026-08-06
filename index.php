@@ -3,6 +3,7 @@
 require('controllers/conexao.php');
 $abrirfavoritos = "";
 session_start();
+
 if(isset($_SESSION['usuario_id'])) {
   echo "Usuario ". $_SESSION['usuario_nome'] . " Logado " ;
   $abrirfavoritos = "mostrarfavoritos";
@@ -38,9 +39,9 @@ $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
   
     <div class="carousel">
       <div class="slides">
-        <img src="src/img/banner1.png" alt="Banner1">
-        <img src="src/img/banner2.png" alt="Banner 2">
-        <img src="src/img/banner3.png" alt="Banner 3">
+        <img src="src/img/IMG_20260805_101934_573.jpg" alt="Banner1">
+        <img src="src/img/IMG_20260805_101941_126.jpg" alt="Banner 2">
+        <img src="src/img/IMG_20260805_102202_568.jpg" alt="Banner 3">
       </div>
     </div>
   

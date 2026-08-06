@@ -197,6 +197,10 @@
    justify-items: center;
  }
 
+ #listawhisky_link {
+  text-decoration: none;
+ }
+
  .favorito-item {
    margin: 5px 0;
    padding: 8px;
@@ -271,7 +275,10 @@
    border: none;
    cursor: pointer;
  }
-
+.promo_link {
+  text-decoration: none;
+  color: #d4af37;
+}
  @media(max-width:760px) {
    .cat-grid {
      grid-template-columns: 1fr 1fr;

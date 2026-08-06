@@ -2,10 +2,10 @@
 <header>Adega Virtual de Whiskys</header>
   <nav>
     <div>
-        <a href="index.php">Meus Whiskys</a>
-        <a href="explorarwhiskys.php">Dicas</a>
+        <a href="index.php">Home</a>
+        <a href="explorarwhiskys.php">Whiskys</a>
         <a href="#favoritos">Meus Favoritos</a>
-        <a href="#">Promoções</a>
+        <a href="/whiskyinthejar/promocoes.php">Promoções</a>
         <a href="cadastro.php">Cadastro Usuario</a>    
     </div>
     <div id="login">
