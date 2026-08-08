@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $stmt = $conn->prepare("SELECT id, nome, senha FROM usuarios WHERE email=:s");
+    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email=:s");
     $stmt->bindValue(":s", $email);
     $stmt->execute();
     
@@ -17,7 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($senha, $row['senha'])) {
             $_SESSION['usuario_id'] = $row['id'];
             $_SESSION['usuario_nome'] = $row['nome'];
-            header("Location: ../index.php");
+            $_SESSION['usuario_tipo'] = $row['usuarioscol'];
+                if($_SESSION['usuario_tipo'] == 'admin'){
+                    header("Location: inicio_admin.php");        
+                }else {
+                    header("Location: ../index.php");
+                }
             exit;
         } else {
             echo "Senha incorreta!";

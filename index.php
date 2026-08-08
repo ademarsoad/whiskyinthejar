@@ -4,8 +4,8 @@ require('controllers/conexao.php');
 $abrirfavoritos = "";
 session_start();
 
-if(isset($_SESSION['usuario_id'])) {
-  echo "Usuario ". $_SESSION['usuario_nome'] . " Logado " ;
+if (isset($_SESSION['usuario_id'])) {
+  echo "Usuario " . $_SESSION['usuario_nome'] . " Logado ";
   $abrirfavoritos = "mostrarfavoritos";
 }
 
@@ -36,15 +36,15 @@ $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
   <?php include('view/header.php') ?>
 
-  
-    <div class="carousel">
-      <div class="slides">
-        <img src="src/img/IMG_20260805_101934_573.jpg" alt="Banner1">
-        <img src="src/img/IMG_20260805_101941_126.jpg" alt="Banner 2">
-        <img src="src/img/IMG_20260805_102202_568.jpg" alt="Banner 3">
-      </div>
+
+  <div class="carousel">
+    <div class="slides">
+      <img src="src/img/IMG_20260805_101934_573.jpg" alt="Banner1">
+      <img src="src/img/IMG_20260805_101941_126.jpg" alt="Banner 2">
+      <img src="src/img/banner2.png" alt="Banner 3">
     </div>
-  
+  </div>
+
   <section id="propaganda">
     <img src="src/img/banner-promo.png" alt="promoções banners">
   </section>
@@ -116,9 +116,9 @@ $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <div class="deal-strip">
         <div class="deal-glass">
           <img src="src/img/Ballantines10.jpg" alt="">
-            <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
-              stroke="#C6883F" stroke-width="1.6" />
-            <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
+          <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
+            stroke="#C6883F" stroke-width="1.6" />
+          <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
           </svg>
         </div>
         <div class="deal-info">
@@ -135,9 +135,9 @@ $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <div class="deal-strip">
         <div class="deal-glass">
           <img src="src/img/Johnnie Walker Black Label.jpg" alt="">
-            <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
-              stroke="#C6883F" stroke-width="1.6" />
-            <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
+          <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
+            stroke="#C6883F" stroke-width="1.6" />
+          <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
           </svg>
         </div>
         <div class="deal-info">
@@ -154,9 +154,9 @@ $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <div class="deal-strip">
         <div class="deal-glass">
           <img src="src/img/Johnnie Walker Blue Label.jpg" alt="">
-            <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
-              stroke="#C6883F" stroke-width="1.6" />
-            <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
+          <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
+            stroke="#C6883F" stroke-width="1.6" />
+          <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
           </svg>
         </div>
         <div class="deal-info">
@@ -173,8 +173,8 @@ $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
   </section>
 
-    <!-- Lista de whiskys -->
-    <!-- <div id="listaWhiskys">
+  <!-- Lista de whiskys -->
+  <!-- <div id="listaWhiskys">
       <?php foreach ($listaehisky as $whisky) { ?>
         <div class="whisky-card">
           <h2><?php echo $whisky['nome']; ?></h2>
@@ -187,12 +187,14 @@ $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <?php } ?>
     </div> -->
 
-    <!-- Favoritos -->
-    <div class="favoritos <?php if(isset($_SESSION['usuario_nome'])) { echo $abrirfavoritos; } ?>">
-      <h2>Meus Favoritos</h2>
-      <div id="listaFavoritos">
-      </div>
+  <!-- Favoritos -->
+  <div class="favoritos <?php if (isset($_SESSION['usuario_nome'])) {
+                          echo $abrirfavoritos;
+                        } ?>">
+    <h2>Meus Favoritos</h2>
+    <div id="listaFavoritos">
     </div>
+  </div>
   </div>
 
   <footer>

@@ -7,8 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
-    $stmt->bindValue("sss", $nome, $email, $senha);
+    $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:n, :e, :s)");
+    $stmt->bindValue(":n", $nome);
+    $stmt->bindValue(":e", $email);
+    $stmt->bindValue(":s", $senha);
 
     if ($stmt->execute()) {
         echo "Cadastro realizado com sucesso! <a href='controllers/login.php'>Faça login</a>";

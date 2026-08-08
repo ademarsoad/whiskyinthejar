@@ -1,6 +1,15 @@
 <?php
 require('conexao.php');
 
+session_start();
+
+if(isset($_SESSION['usuario_tipo']) == 'admin') {
+ echo "Administrador entrando no site";
+} else {
+    header("Location: ../index.php");
+}
+
+
 $targetDir = "../src/img/";
 if (!is_dir($targetDir)) {
     mkdir($targetDir, 0777, true);
@@ -9,7 +18,9 @@ if (!is_dir($targetDir)) {
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
         $fileName = basename($_FILES['imagem']['name']);
-        $targetFile = $targetDir . uniqid() . "_" . $fileName;
+        $targetFile = $targetDir . $fileName;
+
+        echo $targetFile;
         
 
         // $stmt = $conn->prepare("INSERT INTO whiskys (nome, descricao, imagemwhisky) VALUES (:nome, :descricao, :imagem)");
@@ -45,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 
 <body>
-    <?php include('../view/header.php'); ?>
+    <?php include('../view/header_admin.php'); ?>
     <div class="container">
         <!-- Formulário de cadastro -->
         <form id="formWhisky" method="post" enctype="multipart/form-data">
