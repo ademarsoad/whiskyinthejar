@@ -6,10 +6,13 @@
         <a href="cadastrarwhisky.php">Cadastrar Whisky</a>
         
         <a href="cadastropromocao.php">Cadastro Promoções</a>
-        <a href="cadastro.php">Cadastro Usuario</a>    
+        <!-- <a href="cadastro.php">Cadastro Usuario</a>     -->
+         <!-- <a href="#">Lista de Whiskey</a>
+         <a href="#">Lista de Promoções</a> -->
     </div>
     <div id="login">
         <a href="controllers/login.php"><i class="fa-solid fa-user-lock"></i></a>
+        <a href="../controllers/logout.php">Sair</a>
     </div>
     
   </nav>

@@ -9,14 +9,21 @@ if (isset($_SESSION['usuario_id'])) {
   $abrirfavoritos = "mostrarfavoritos";
 }
 
+// mostrar todos os whiskys
+// $stmt = $conn->prepare("SELECT w.nome, w.descricao, t.tipo from whiskys w
+// inner join tipowhisky t on w.tipo = t.id");
+// $stmt->execute();
 
-$stmt = $conn->prepare("SELECT w.nome, w.descricao, t.tipo from whiskys w
-inner join tipowhisky t on w.tipo = t.id");
+// $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+// mostrar as promoções mais recentes 
+$stmt = $conn->prepare("select w.nome, w.imagemwhisky, p.loja, p.valor_original, p.valor_desconto, p.link, p.is_active from promocao p
+inner join whiskys w on w.id = p.id_whisky order by p.id desc limit 3");
+
 $stmt->execute();
 
-$listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -104,87 +111,48 @@ $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </section>
 
   <section id="promocoes">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="eyebrow">Atualizado hoje</span>
-          <h2>Promoções em destaque</h2>
-        </div>
-        <a href="#" class="sec-link">Ver todas as promoções →</a>
-      </div>
+        <div class="wrap">
+            <div class="sec-head">
+                <div>
+                    <span class="eyebrow">Atualizado hoje</span>
+                    <h2>Promoções em destaque</h2>
+                </div>
+                <a href="promocoes.php" class="sec-link">Ver todas as promoções →</a>
+            </div>
 
-      <div class="deal-strip">
-        <div class="deal-glass">
-          <img src="src/img/Ballantines10.jpg" alt="">
-          <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
-            stroke="#C6883F" stroke-width="1.6" />
-          <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
-          </svg>
+            <?php foreach ($result as $res) { if($res['is_active'] == 1) { ?>
+                <a href="<?php echo $res['link']; ?>" target="_blank" class="promo_link">
+                    <div class="deal-strip">
+                        <div class="deal-glass">
+                            <img src="src/img/<?php echo $res['imagemwhisky']; ?>" alt="">
+                            <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
+                                stroke="#C6883F" stroke-width="1.6" />
+                            <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
+                            </svg>
+                        </div>
+                        <div class="deal-info">
+                            <h4><?php echo $res['nome']; ?></h4>
+                            <div class="specline">15 ANOS · 43% ABV · 700ML</div>
+                            <div class="deal-badges"><span class="badge <?php echo strtolower($res['loja']); ?>"><?php echo $res['loja']; ?></span>
+                            </div>
+                        </div>
+                        <div class="deal-cta">
+                            <div class="deal-price"><span class="old"><?php echo "R$ " . $res['valor_original'] ?></span><span class="new"><?php echo "R$ " . $res['valor_desconto'] ?></span></div>
+                            <div class="deal-off"><?php echo round(($res['valor_original'] - $res['valor_desconto']) / $res['valor_original'] * 100, 0) . "%"; ?></div>
+                        </div>
+                    </div>
+                </a>
+            <?php } }?>
         </div>
-        <div class="deal-info">
-          <h4>Blended 12 anos — edição padrão</h4>
-          <div class="specline">12 ANOS · 40% ABV · 1L</div>
-          <div class="deal-badges"><span class="badge amazon">Amazon</span></div>
-        </div>
-        <div class="deal-cta">
-          <div class="deal-price"><span class="old">R$ 249,90</span><span class="new">R$ 189,90</span></div>
-          <div class="deal-off">−24% · exemplo</div>
-        </div>
-      </div>
-
-      <div class="deal-strip">
-        <div class="deal-glass">
-          <img src="src/img/Johnnie Walker Black Label.jpg" alt="">
-          <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
-            stroke="#C6883F" stroke-width="1.6" />
-          <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
-          </svg>
-        </div>
-        <div class="deal-info">
-          <h4>Bourbon straight — barril novo</h4>
-          <div class="specline">S/ IDADE DECLARADA · 45% ABV · 750ML</div>
-          <div class="deal-badges"><span class="badge ml">Mercado Livre</span></div>
-        </div>
-        <div class="deal-cta">
-          <div class="deal-price"><span class="old">R$ 159,00</span><span class="new">R$ 132,00</span></div>
-          <div class="deal-off">−17% · exemplo</div>
-        </div>
-      </div>
-
-      <div class="deal-strip">
-        <div class="deal-glass">
-          <img src="src/img/Johnnie Walker Blue Label.jpg" alt="">
-          <path d="M10 4H36L33 26C33 26 38 34 38 46C38 58 30 66 23 66C16 66 8 58 8 46C8 34 13 26 13 26L10 4Z"
-            stroke="#C6883F" stroke-width="1.6" />
-          <path d="M11 44H35" stroke="#C6883F" stroke-width="1.2" opacity="0.5" />
-          </svg>
-        </div>
-        <div class="deal-info">
-          <h4>Single malt 15 anos — cask ex-xerez</h4>
-          <div class="specline">15 ANOS · 43% ABV · 700ML</div>
-          <div class="deal-badges"><span class="badge amazon">Amazon</span><span class="badge ml">Mercado Livre</span>
-          </div>
-        </div>
-        <div class="deal-cta">
-          <div class="deal-price"><span class="old">R$ 419,00</span><span class="new">R$ 359,00</span></div>
-          <div class="deal-off">−14% · exemplo</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
   <!-- Lista de whiskys -->
   <!-- <div id="listaWhiskys">
-      <?php foreach ($listaehisky as $whisky) { ?>
+      
         <div class="whisky-card">
-          <h2><?php echo $whisky['nome']; ?></h2>
-          <p class="whiskycardtipo"><?php echo $whisky['tipo']; ?></p>
-          <img src="src/img/<?php echo $whisky['nome'] . ".jpg" ?>" alt="<?php echo $whisky['nome'] . " " . $whisky['tipo']; ?>">
+        
 
-          <button>Adicionar aos Favoritos</button>
-        </div>
-
-      <?php } ?>
+      
     </div> -->
 
   <!-- Favoritos -->

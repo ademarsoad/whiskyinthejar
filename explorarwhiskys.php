@@ -10,7 +10,7 @@ if (isset($_SESSION['usuario_id'])) {
 if(isset($_POST['search'])) {$nomepesquisa = $_POST['search']; } else {$nomepesquisa = ""; };
 
 
-$stmt = $conn->prepare("SELECT w.nome, w.descricao, w.imagemwhisky, t.tipo from whiskys w
+$stmt = $conn->prepare("SELECT w.id, w.nome, w.descricao, w.imagemwhisky, t.tipo from whiskys w
 inner join tipowhisky t on w.tipo = t.id WHERE w.nome like :nome or t.tipo like :nome" );
 $stmt->bindValue(":nome", "%$nomepesquisa%");
 
@@ -48,12 +48,14 @@ $listaehisky = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Lista de whiskys -->
     <div id="listaWhiskys">
         <?php foreach ($listaehisky as $whisky) { ?>
+        
             <div class="whisky-card">
                 <h2><?php echo $whisky['nome']; ?></h2>
                 <p class="whiskycardtipo"><?php echo $whisky['tipo']; ?></p>
                 <img src="src/img/<?php echo $whisky['imagemwhisky']; ?>" alt="<?php echo $whisky['nome'] . " " . $whisky['tipo']; ?>">
 
-                <button>Adicionar aos Favoritos</button>
+                <!-- <button>Saiba Mais</button> -->
+                <a href="detalheswhisky.php?id_whisky=<?php echo $whisky['id']; ?>">Mais Detalhes</a>
             </div>
 
         <?php } ?>
